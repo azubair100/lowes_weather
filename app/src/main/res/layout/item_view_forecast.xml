@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="forecast"
+            type="com.zubair.lowestest.model.storage.Forecast" />
+
+        <variable
+            name="listener"
+            type="com.zubair.lowestest.view.ForecastClickListener" />
+    </data>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="@dimen/marginTopText"
+        app:cardPreventCornerOverlap="true"
+        app:cardUseCompatPadding="true"
+        android:onClick="@{listener::onForecastItemClicked}">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/forecastId"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:text="@{String.valueOf(forecast.uuid)}"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/forecastIcon"
+                android:layout_width="@dimen/forecastIconDimensions"
+                android:layout_height="@dimen/forecastIconDimensions"
+                android:layout_marginStart="@dimen/forecastIconMargins"
+                android:layout_marginTop="@dimen/forecastIconMargins"
+                android:layout_marginBottom="@dimen/forecastIconMargins"
+                android:contentDescription="@string/content_description"
+                android:imageUrl="@{forecast.iconCode}"
+                android:scaleType="fitCenter"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/weather"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/forecastTextsMargins"
+                android:layout_marginEnd="@dimen/forecastTextsMargins"
+                android:text="@{forecast.weather}"
+                android:textAlignment="center"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/forecastIcon"
+                app:layout_constraintTop_toTopOf="@+id/forecastIcon"
+                tools:text="Testing for this" />
+
+            <TextView
+                android:id="@+id/temperature"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/forecastTextsMargins"
+                android:layout_marginEnd="@dimen/forecastTextsMargins"
+                android:text="@{forecast.temperature}"
+                android:textAlignment="center"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/forecastIcon"
+                app:layout_constraintTop_toBottomOf="@+id/weather"
+                tools:text="Testing for this" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
+</layout>

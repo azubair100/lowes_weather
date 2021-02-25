@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="recyclerViewMargins">8dp</dimen>
+    <dimen name="marginTopText">5dp</dimen>
+    <dimen name="forecastIconDimensions">70dp</dimen>
+    <dimen name="forecastIconMargins">8dp</dimen>
+    <dimen name="forecastTextsMargins">8dp</dimen>
+    <dimen name="detailImageHeight">300dp</dimen>
+</resources>

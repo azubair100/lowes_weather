@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">LowesTest</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="city_name">City Name</string>
+    <string name="look_up">Look Up</string>
+    <string name="find_forecast">Find Forecast</string>
+    <string name="content_description">Content Description</string>
+    <string name="no_connection">No internet connection. Please check your WiFi/Cellular</string>
+    <string name="unknown_error">Something went wrong. Please try again later.</string>
+    <string name="empty_list">No forecast found</string>
+    <string name="temperature">Temperature: %s</string>
+    <string name="feels_like">Feels Like: %s</string>
+    <string name="humidity">Humidity: %s</string>
+    <string name="wind_speed">Wind Speed: %s</string>
+    <string name="wind_direction">Wind Direction: %s</string>
+</resources>
