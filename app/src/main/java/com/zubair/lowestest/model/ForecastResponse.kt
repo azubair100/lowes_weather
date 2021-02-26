@@ -7,13 +7,13 @@ data class ForecastList(@SerializedName("list") val forecast: List<WeatherRespon
 
 data class WeatherResponse (
     @SerializedName("weather") val weatherList: List<Weather>,
-    @SerializedName("main") val mainInformation: Main,
-    @SerializedName("wind") val wind: Wind,
-    @SerializedName("rain") val rain: Rain,
-    @SerializedName("snow") val snow: Snow,
-    @SerializedName("clouds") val cloud: Cloud,
-    @SerializedName("name") val city: String,
-    @SerializedName("dt_txt") val dateTime: String
+    @SerializedName("main") val mainInformation: Main?,
+    @SerializedName("wind") val wind: Wind?,
+    @SerializedName("rain") val rain: Rain?,
+    @SerializedName("snow") val snow: Snow?,
+    @SerializedName("clouds") val cloud: Cloud?,
+    @SerializedName("name") val city: String?,
+    @SerializedName("dt_txt") val dateTime: String?
 )
 
 data class Weather(
@@ -50,8 +50,8 @@ data class Snow(
 )
 
 sealed class ResponseType{
-    object Error: ResponseType()
-    data class Success(val forecastList: List<Forecast>): ResponseType()
+    data class Error(val errorMessage: String, val errorCode: Int): ResponseType()
+    data class Success(val forecastList: List<Forecast>?): ResponseType()
 }
 
 

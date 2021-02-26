@@ -6,7 +6,6 @@ import com.zubair.lowestest.model.ResponseType
 import com.zubair.lowestest.model.storage.Forecast
 import com.zubair.lowestest.model.storage.ForecastDatabase
 import com.zubair.lowestest.util.Constants
-import kotlinx.coroutines.runBlocking
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -34,13 +33,13 @@ class WeatherRepository @Inject constructor(
                     list.forecast.forEach {
                         forecastList.add(
                             Forecast(
-                                it.mainInformation.currentTemperature?.toString(),
-                                it.mainInformation.feelsLike?.toString(),
-                                it.weatherList.first().main,
-                                it.weatherList.first().description,
-                                it.mainInformation.humidity?.toString(),
-                                "${it.wind.speed} MPH",
-                                convertDegreeToCardinalDirection(it.wind.direction),
+                                it.mainInformation?.currentTemperature?.toString(),
+                                it.mainInformation?.feelsLike?.toString(),
+                                it.weatherList?.first().main,
+                                it.weatherList?.first().description,
+                                it.mainInformation?.humidity?.toString(),
+                                "${it.wind?.speed} MPH",
+                                convertDegreeToCardinalDirection(it.wind?.direction),
                                 it.weatherList.first().icon
                             )
                         )
@@ -57,7 +56,7 @@ class WeatherRepository @Inject constructor(
                 return ResponseType.Success(forecastList)
 
             } else {
-                return ResponseType.Error
+                return ResponseType.Error(response.message(), response.code())
             }
         }
 

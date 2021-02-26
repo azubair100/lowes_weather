@@ -1,5 +1,6 @@
 package com.zubair.lowestest.viewmodel
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -13,6 +14,7 @@ import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
+@ExperimentalCoroutinesApi
 class WeatherViewModel @Inject constructor(
     private val weatherRepository: WeatherRepository,
     private val networkMonitor: NetworkMonitor
@@ -24,14 +26,16 @@ class WeatherViewModel @Inject constructor(
     private val requestStateMutable = MutableLiveData<RequestState>()
     val requestState: LiveData<RequestState> get() = requestStateMutable
 
-    @ExperimentalCoroutinesApi
     fun getForecast(cityName: String) {
         try {
             viewModelScope.launch {
                 networkMonitor.hasInternetFlow.collect { hasInternetConnection ->
                     if (hasInternetConnection) {
                         when (val response = weatherRepository.getForecasts(cityName)) {
-                            is ResponseType.Error ->  requestStateMutable.postValue(RequestState.RequestFailedGeneral)
+                            is ResponseType.Error -> {
+                                Log.e("Error", "error ${response.errorMessage}")
+                                requestStateMutable.postValue(RequestState.RequestFailedGeneral)
+                            }
                             is ResponseType.Success -> {
                                 val list = response.forecastList
                                 if (list.isNullOrEmpty()) {
